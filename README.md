@@ -22,14 +22,16 @@ MPI_Reduce collects data from all processes and combines it using a reduction op
 While it is easy to get the minimum column-wise for a matrix held on a single processor, a question arises of how to perform this when rows are split among different processor. To add a little challenge this assignment aims to do so without using the reduce method supplied by MPI. This approach distributes the (i+1) row to the ith processor from root using the send and recv methods. This way each processor it's corresponding row of the matrix in order. As previously said, because it is trivial to get the column min on a single processor we claw back all the data to root to recreate that scenario using the gather function. This protocol works only because order is maintained across methods, therefore the matrix only needs to be reconstructed on the first processor to locate summary statistics. The following psuedo code is applied:
 
 ```
+initialize empty numpy array
+
 if root: 
   create matrix
-  save first row
+  save first row to empty numpy array
 
   For each processor besides root send the ith row
 
 else:
-  receive the array sent by root
+  receive the array sent by root with empty numpy array
 
 # Use the following function:
 function My_global_min_loc(rank, N):
@@ -39,15 +41,15 @@ function My_global_min_loc(rank, N):
     regather the data with the gather method at root.
   
     for column in columns:
-      take the min and argmin on each column. # Can be done because order is maintained.
+      take the min and argmin on each column.
   
       results[f"A{column}"} = [min, argmin]
 ```
 
 Using the main.py script you can see a small example output (N=5) in the corresponding log files. Question-1_rank_0.log showcases the initial matrix, when data was sent and gathered, the reconstructed matrix, and the final results. Additionally, Question-1_rank_i.log (I > 0) has the rows each processor received for verification. 
-  '''mpirun -n 5 main.py'''
+\n'''mpirun -n 5 main.py'''
 
-When N is considerably large, such a visualization is not possible, so a time analysis has been performed. The script was ran for floating numbers on 40 processors at magnitudes 5 through 9 on seawulf.
+When N is considerably large, such a visualization is not possible, so a time analysis has been performed. The script was run for floating numbers on 16 processors at magnitudes 5 through 9 on seawulf.
 
 
  
