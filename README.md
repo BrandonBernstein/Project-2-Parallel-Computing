@@ -24,7 +24,7 @@ MPI_Reduce collects data from all processes and combines it using a reduction op
 
 ## Part 2: Implementation of a simple reduce function of column minimums across processors.
 
-While it is easy to get the minimum column-wise for a matrix held on a single processor, a question arises of how to perform this when rows are split among different processors. To add a little challenge this assignment aims to do so without using the reduce method supplied by MPI. 
+While it is easy to get the minimum column-wise for a matrix held on a single processor, a question arises of how to perform this when rows are split among different processors. Additionally how do we tell which processor has the minimum? To add a little challenge this assignment aims to do so without using the reduce method supplied by MPI. 
 
 This approach distributes the ith row to the ith processor from root using the send and recv methods. This way each processor has its corresponding row of the matrix in order. As previously said, because it is trivial to get the column min on a single processor we claw back all the data to root to recreate that scenario using the gather function. This protocol works only because order is maintained across methods, therefore the matrix only needs to be reconstructed on the first processor to locate summary statistics. The following psuedo code is applied:
 
