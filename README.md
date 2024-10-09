@@ -47,7 +47,9 @@ function My_global_min_loc(rank, N):
 ```
 
 Using the main.py script you can see a small example output (N=5) in the corresponding log files. Question-1_rank_0.log showcases the initial matrix, when data was sent and gathered, the reconstructed matrix, and the final results. Additionally, Question-1_rank_i.log (I > 0) has the rows each processor received for verification. 
-\n'''mpirun -n 5 main.py'''
+
+Command used:
+```mpirun -n 5 main.py```
 
 When N is considerably large, such a visualization is not possible, so a time analysis has been performed. The script was run for floating numbers on 16 processors at magnitudes 5 through 9 on seawulf.
 
