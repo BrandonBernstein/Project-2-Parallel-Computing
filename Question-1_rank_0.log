@@ -1,0 +1,23 @@
+2024-10-09 12:28:38,023 - advanced_logger_0 - INFO - Matrix shape: (5, 5)
+2024-10-09 12:28:38,028 - advanced_logger_0 - INFO - Matrix:
+[[0.09810797 0.06059975 0.15460688 0.91609734 0.70652006]
+ [0.47569606 0.72236635 0.46069867 0.60894211 0.97099874]
+ [0.48266758 0.20250297 0.36540166 0.88825724 0.51245298]
+ [0.9395666  0.58240295 0.56860007 0.57318333 0.13500755]
+ [0.1843486  0.65566442 0.93602636 0.8326582  0.66763661]]
+2024-10-09 12:28:38,032 - advanced_logger_0 - INFO - Processor 1 sent row 2
+2024-10-09 12:28:38,034 - advanced_logger_0 - INFO - Processor 2 sent row 3
+2024-10-09 12:28:38,060 - advanced_logger_0 - INFO - Processor 3 sent row 4
+2024-10-09 12:28:38,061 - advanced_logger_0 - INFO - Processor 4 sent row 5
+2024-10-09 12:28:38,112 - advanced_logger_0 - INFO - Gathered Data:
+2024-10-09 12:28:38,113 - advanced_logger_0 - INFO - 
+[[0.09810797 0.06059975 0.15460688 0.91609734 0.70652006]
+     [0.47569606 0.72236635 0.46069867 0.60894211 0.97099874]
+     [0.48266758 0.20250297 0.36540166 0.88825724 0.51245298]
+     [0.9395666  0.58240295 0.56860007 0.57318333 0.13500755]
+     [0.1843486  0.65566442 0.93602636 0.8326582  0.66763661]]
+2024-10-09 12:28:38,113 - advanced_logger_0 - INFO - For column 0, processor 0 has minimum value 0.09810797091551349
+2024-10-09 12:28:38,113 - advanced_logger_0 - INFO - For column 1, processor 0 has minimum value 0.06059974765530041
+2024-10-09 12:28:38,113 - advanced_logger_0 - INFO - For column 2, processor 0 has minimum value 0.15460687891517833
+2024-10-09 12:28:38,113 - advanced_logger_0 - INFO - For column 3, processor 3 has minimum value 0.5731833263180676
+2024-10-09 12:28:38,114 - advanced_logger_0 - INFO - For column 4, processor 3 has minimum value 0.13500754760620637

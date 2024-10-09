@@ -1,0 +1,7 @@
+2024-10-04 18:35:46,153 - time_logger - INFO - Values: 10000. Total duration: 0.15303 seconds. Processors 4
+2024-10-04 18:35:54,915 - time_logger - INFO - Values: 100000. Total duration: 1.33975 seconds. Processors 4
+2024-10-04 18:36:14,689 - time_logger - INFO - Values: 1000000. Total duration: 14.26598 seconds. Processors 4
+
+
+2024-10-09 12:27:33,227 - time_logger - INFO - Values: 5. Total duration: 0.40424 seconds. Processors 5
+2024-10-09 12:28:38,114 - time_logger - INFO - Values: 5. Total duration: 0.11841 seconds. Processors 5
