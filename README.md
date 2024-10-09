@@ -19,7 +19,7 @@ MPI_Reduce collects data from all processes and combines it using a reduction op
 
 ## Part 2: Implementation of a simple reduce function of column minimums across processors.
 
-While it is easy to get the minimum column-wise for a matrix held on a single processor, a question arises of how to perform this when rows are split among different processor. To add a little challenge this assignment aims to do so without using the reduce method supplied by MPI. This approach distributes the (i+1) row to the ith processor from root using the send and recv methods. This way each processor it's corresponding row of the matrix in order. As previously said, because it is trivial to get the column min on a single processor we claw back all the data to root to recreate that scenario using the gather function. This protocol works only because order is maintained across methods, therefore the matrix only needs to be reconstructed on the first processor to locate summary statistics. The following psuedo code is applied:
+While it is easy to get the minimum column-wise for a matrix held on a single processor, a question arises of how to perform this when rows are split among different processors. To add a little challenge this assignment aims to do so without using the reduce method supplied by MPI. This approach distributes the (i+1) row to the ith processor from root using the send and recv methods. This way each processor has its corresponding row of the matrix in order. As previously said, because it is trivial to get the column min on a single processor we claw back all the data to root to recreate that scenario using the gather function. This protocol works only because order is maintained across methods, therefore the matrix only needs to be reconstructed on the first processor to locate summary statistics. The following psuedo code is applied:
 
 ```
 initialize empty numpy array
@@ -46,12 +46,12 @@ function My_global_min_loc(rank, N):
       results[f"A{column}"} = [min, argmin]
 ```
 
-Using the main.py script you can see a small example output (N=5) in the corresponding log files. Question-1_rank_0.log showcases the initial matrix, when data was sent and gathered, the reconstructed matrix, and the final results. Additionally, Question-1_rank_i.log (I > 0) has the rows each processor received for verification. 
+Using the main.py script you can see a small example output (N=5) in the corresponding log files. Question-1_rank_0.log showcases the initial matrix, when data was sent and gathered, the reconstructed matrix, and the final results. Additionally, Question-1_rank_i.log (i > 0) has the rows each processor received for verification. 
 
 Command used:
 ```mpirun -n 5 main.py```
 
-When N is considerably large, such a visualization is not possible, so a time analysis has been performed. The script was run for floating numbers on 16 processors at magnitudes 5 through 9 on seawulf.
+When N is considerably large such a visualization of steps is not possible, so a time analysis has been performed. The script was run for floating numbers on 16 processors at magnitudes 5 through 9 on seawulf.
 
 
  
