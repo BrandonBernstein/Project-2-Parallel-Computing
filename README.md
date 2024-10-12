@@ -1,6 +1,6 @@
 # Project 2 Question 1
 
-## Description of methods: MPI_Bcast(), MPI_Scatter(), and MPI_Allgather(), MP_Alltoall() and MPI_Reduce().
+## Description of methods and algorithms: MPI_Bcast(), MPI_Scatter(), and MPI_Allgather(), MP_Alltoall() and MPI_Reduce().
 
 **1. MPI_Bcast**
 
