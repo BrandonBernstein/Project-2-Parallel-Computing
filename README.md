@@ -45,7 +45,7 @@ function My_global_min_loc(rank, N):
 
   if rank == root:
 
-    regather the data with the gather method at root.
+    regather the data from all processors
   
     for column in columns:
       take the min and argmin on each column.
