@@ -4,7 +4,7 @@
 
 **1. MPI_Bcast**
 
-MPI_Bcast broadcasts a message from one process (the root) to all other processes in a communicator. Taking data from the root and cloning it to each processor iteratively one by one on each time step.
+MPI_Bcast broadcasts a message from one process (the root) to all other processes in a communicator. It takes data from the root and clones it to each processor iteratively, one by one, at each time step.
 
 **2. MPI_Scatter**
 
@@ -12,7 +12,7 @@ MPI_Scatter distributes chunks of an array from the root process to all other pr
 
 **3. MPI_Allgather**
 
-MPI_Allgather is a collective operation where each process sends its data to all other processes, and all processes receive the entire set of data from everyone. That is, at each time step, each processor sends its data to the next other processor iteratively while simultaneously receiving data at each time step.
+MPI_Allgather is a collective operation where each process sends its data to all other processors. Similarly, all processors receive data from all other processors. That is, at each time step, each processor sends its data to the next other processor iteratively while simultaneously receiving data at each time step.
 
 **4. MPI_Alltoall**
 
@@ -24,9 +24,9 @@ MPI_Reduce collects data from all processes and combines it using a reduction op
 
 ## Part 2: Implementation of a simple reduce function of column minimums across processors.
 
-While it is easy to get the minimum column-wise for a matrix held on a single processor, a question arises of how to perform this when rows are split among different processors. Additionally how do we tell which processor has the minimum? To add a little challenge this assignment aims to do so without using the reduce method supplied by MPI. 
+While it is easy to get the minimum column-wise for a matrix held on a single processor, a question arises of how to perform this when rows are split among different processors. Additionally, how do we tell which processor has the minimum? To add a little challenge this assignment aims to do so without using the reduce method supplied by MPI. 
 
-This approach distributes the ith row to the ith processor from root using the send and recv methods. This way each processor has its corresponding row of the matrix in order. As previously said, because it is trivial to get the column min on a single processor we claw back all the data to root to recreate that scenario using the gather function. This protocol works only because order is maintained across methods, therefore the matrix only needs to be reconstructed on the first processor to locate summary statistics. The following psuedo code is applied:
+This approach distributes the ith row to the ith processor from root using the send and recv methods. This way each processor has its corresponding row of the matrix in order. As previously said, because it is trivial to get the column min on a single processor we claw back all the data to root to recreate that scenario using the gather function. This protocol works only because order is maintained across methods, therefore the matrix only needs to be reconstructed on the first processor to locate summary statistics. The following pseudo code is applied:
 
 ```
 initialize empty numpy array
@@ -59,7 +59,10 @@ Using the main.py script you can see a small example output (N=5, P=5) in the co
 Command used:
 ```mpirun -n 5 main.py```
 
-When N is considerably large such a visualization of steps is not possible, so a time analysis has been performed. The script was run for floating numbers on 16 processors at magnitudes 5 through 9 on seawulf.
+When N is considerably large, visualization of steps is impossible, so a showcase of time performance for varying N is displayed below. The script was run for floating numbers on 4 processors at magnitudes 5 through 7 on seawulf. We see that time is stable and increases approximately linearly with N.
 
+| P  | N = 10^5 | N = 10^6 | N = 10^7 |
+|----|----------|----------|----------|
+| 4  | 0.55822  | 5.75201  | 63.41832 |
 
  
