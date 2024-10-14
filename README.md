@@ -57,7 +57,7 @@ if rank == root:
 Using the main.py script you can see a small example output (N=5, P=5) in the corresponding log files. Question-1_rank_0.log showcases the initial matrix, when data was sent and gathered, the reconstructed matrix, and the final results. Additionally, Question-1_rank_i.log (i > 0) has the rows each processor received for verification. 
 
 Command used:
-```mpirun -n 5 python main.py```
+```mpiexec -n 5 python main.py```
 
 When N is considerably large, visualization of steps is impossible, so a showcase of time performance for varying N is displayed below. The script was run for floating numbers on 4 processors at magnitudes 5 through 7 on seawulf. We see that time is stable and increases approximately linearly with N.
 
